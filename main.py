@@ -546,6 +546,8 @@ class StockAnalysisPipeline:
         # Issue #119: 从配置读取报告类型
         report_type_str = getattr(self.config, 'report_type', 'simple').lower()
         report_type = ReportType.FULL if report_type_str == 'full' else ReportType.SIMPLE
+        # Issue #128: 从配置读取分析间隔
+        analysis_delay = getattr(self.config, 'analysis_delay', 0)
 
         if single_stock_notify:
             logger.info(f"已启用单股推送模式：每分析完一只股票立即推送（报告类型: {report_type_str}）")
